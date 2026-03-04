@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stanford Performing Arts</title>
+  <style>
+    * { box-sizing: border-box; }
+    body{ margin:12px; font-family:"Times New Roman",Times,serif; background:#fff; color:#111; }
+    .page{ background:#d7e6f4; padding:14px 16px 18px; max-width:980px; }
+    .top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px; }
+    .title{ margin:0; color:#b10000; font-size:64px; font-weight:800; line-height:1; }
+    .edition{ text-align:right; color:#b10000; font-weight:800; margin-top:8px; font-size:16px; line-height:1.05; }
+    .row{ display:flex; gap:24px; align-items:flex-start; margin-top:8px; }
+    .left{ flex:68%; } .right{ flex:32%; }
+    h2{ margin:8px 0 10px 0; font-size:28px; font-weight:800; }
+    .hall{ width:290px; height:auto; float:left; margin:0 16px 10px 0; border:1px solid #666; background:#fff; }
+    p{ margin:0 0 10px 0; font-size:14px; line-height:1.35; }
+    .centerline{ text-align:center; margin:10px 0 10px; }
+    .calendar{ list-style:none; padding:0; margin:6px 0 0 0; border-top:2px solid #666; background:rgba(255,255,255,0.35); }
+    .calendar li{ padding:10px 8px; border-bottom:1px solid #666; font-style:italic; font-size:14px; line-height:1.2; }
+    @media (max-width:760px){ .row{ flex-direction:column; } .hall{ float:none; width:100%; margin:0 0 12px 0; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <h1 class="title">Stanford Performing Arts</h1>
+      <div class="edition">
+        <div>Autumn 2012</div>
+        <div>Edition</div>
+      </div>
+    </header>
+
+    <div class="row">
+      <section class="left">
+        <h2>Bing Concert Hall</h2>
+
+        <img class="hall" src="hall.jpg" alt="Bing Concert Hall" />
+
+        <p>
+          The Bing Concert Hall at Stanford will play a vital role in campus and in the local community.
+          The hall’s exceptional acoustics and state-of-the-art technical capabilities will showcase the world’s finest performers.
+        </p>
+
+        <p class="centerline">The hall is scheduled to open early in 2013.</p>
+
+        <p>
+          The concert hall will have 844 seats in an intimate vineyard-style configuration, with terraced sections wrapping all the way around the stage.
+        </p>
+      </section>
+
+      <aside class="right">
+        <h2>Calendar</h2>
+        <ul class="calendar">
+          <li>Harmony for Humanity: Daniel Pearl<br/>World Music Concert</li>
+          <li>Sundays with the St. Lawrence String<br/>Quartet</li>
+          <li>Merce Cunningham Dance Company</li>
+          <li>Juilliard String Quartet</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
