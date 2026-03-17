@@ -1,0 +1,103 @@
+PHP
+
+<?php
+class Calendar {
+    private $active_year, $active_month, $daysInMonth, $currentDate;
+
+    public function __construct($date = null) {
+        $this->active_year = $date != null ? date('Y', strtotime($date)) : date('Y');
+        $this->active_month = $date != null ? date('m', strtotime($date)) : date('m');
+        $this->daysInMonth = cal_days_in_month(CAL_GREGORIAN, $this->active_month, $this->active_year);
+        $this->currentDate = $date != null ? strtotime($date) : strtotime(date('Y-m-d'));
+    }
+
+    public function draw() {
+        $calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
+        $headings = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+        $calendar .= '<tr class="calendar-row"><td class="calendar-day-head">' . implode('</td><td class="calendar-day-head">', $headings) . '</td></tr>';
+
+        $running_day = date('w', strtotime($this->active_year . '-' . $this->active_month . '-01'));
+        $days_in_week = 1;
+        $calendar .= '<tr class="calendar-row">';
+
+        // Print "empty" days
+        for ($x = 0; $x < $running_day; $x++) {
+            $calendar .= '<td class="calendar-day-np"></td>';
+            $days_in_week++;
+        }
+
+        // Loop through days
+        for ($list_day = 1; $list_day <= $this->daysInMonth; $list_day++) {
+            $calendar .= '<td class="calendar-day"><div class="day-number">' . $list_day . '</div></td>';
+            if ($running_day == 6) {
+                $calendar .= '</tr>';
+                if ($list_day < $this->daysInMonth) {
+                    $calendar .= '<tr class="calendar-row">';
+                }
+                $running_day = -1;
+                $days_in_week = 0;
+            }
+            $running_day++;
+            $days_in_week++;
+        }
+
+        // Finish the last week of the month
+        if ($days_in_week < 8) {
+            for ($x = 1; $x <= 8 - $days_in_week; $x++) {
+                $calendar .= '<td class="calendar-day-np"></td>';
+            }
+        }
+
+        $calendar .= '</tr></table>';
+        return $calendar;
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="calendar.css"> <!-- Link to your CSS file for styling -->
+</head>
+<body>
+<?php
+$calendar = new Calendar();
+echo $calendar->draw();
+?>
+</body>
+</html>
+
+CSS
+
+table.calendar {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td.calendar-day, td.calendar-day-np {
+    width: 14.28%; /* 100% / 7 days */
+    padding: 10px;
+    border: 1px solid #ccc;
+    vertical-align: top;
+    height: 100px; /* Adjust height as needed */
+}
+
+td.calendar-day-head {
+    background-color: #f2f2f2;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+div.day-number {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+td.calendar-day-np {
+    background-color: #fafafa;
+    color: #999;
+}
