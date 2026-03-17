@@ -1,0 +1,72 @@
+HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework 3-2 Input</title>
+</head>
+<body>
+  <h1>Homework 3-2</h1>
+
+  <form action="homework3-2.php" method="get">
+    input number :
+    <input type="number" name="n" min="10" max="100" value="30" required>
+    <button type="submit">ok!</button>
+  </form>
+</body>
+</html>
+
+PHP
+
+<?php
+$n = 30;
+
+if (isset($_GET['n'])) {
+  $tmp = intval($_GET['n']);
+  if ($tmp >= 10 && $tmp <= 100) $n = $tmp;
+}
+
+$arr = [];
+$max = null;
+
+for ($i = 0; $i < $n; $i++) {
+  $v = rand(10, 100);
+  $arr[] = $v;
+  if ($max === null || $v > $max) $max = $v;
+}
+
+$sorted = $arr;
+sort($sorted);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework 3-2 Result</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .nums { line-height: 1.8; word-break: break-word; }
+    .box { padding: 12px; border: 1px solid #ccc; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Homework 3-2 Result</h1>
+
+  <div class="box">
+    <p>input number : <?php echo htmlspecialchars((string)$n, ENT_QUOTES, 'UTF-8'); ?></p>
+
+    <p><b>generated:</b></p>
+    <div class="nums"><?php echo implode(' ', $arr); ?></div>
+
+    <p><b>sorted (asc):</b></p>
+    <div class="nums"><?php echo implode(' ', $sorted); ?></div>
+
+    <p><b>maximum = <?php echo $max; ?></b></p>
+  </div>
+
+  <p><a href="homework3-2.html">back</a></p>
+</body>
+</html>

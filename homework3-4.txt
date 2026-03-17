@@ -1,0 +1,118 @@
+HTML
+
+<!DOCTYPE HTML>
+<html>
+<head><meta charset="utf-8"></head>
+<body>
+
+<h2>Homework 3-4</h2>
+
+직사각형 : 가로와 세로를 입력으로 받아서 면적을 출력한다.<br>
+<form action="homework3-4.php" method="post">
+  <input type="hidden" name="shape" value="rectangle">
+  가로: <input type="text" name="width"><br>
+  세로: <input type="text" name="height"><br>
+  <input type="submit" value="ok!">
+</form>
+<br><hr><br>
+
+삼각형 : 밑변과 높이를 입력으로 받아서 면적을 출력한다.<br>
+<form action="homework3-4.php" method="post">
+  <input type="hidden" name="shape" value="triangle">
+  밑변: <input type="text" name="width"><br>
+  높이: <input type="text" name="height"><br>
+  <input type="submit" value="ok!">
+</form>
+<br><hr><br>
+
+원 : 반지름을 입력으로 받아서 면적을 출력한다.<br>
+<form action="homework3-4.php" method="post">
+  <input type="hidden" name="shape" value="circle">
+  반지름: <input type="text" name="radius"><br>
+  <input type="submit" value="ok!">
+</form>
+<br><hr><br>
+
+직육면체 : 가로, 세로, 높이를 입력으로 받아서 체적을 출력한다.<br>
+<form action="homework3-4.php" method="post">
+  <input type="hidden" name="shape" value="box">
+  가로: <input type="text" name="width"><br>
+  세로: <input type="text" name="length"><br>
+  높이: <input type="text" name="height"><br>
+  <input type="submit" value="ok!">
+</form>
+<br><hr><br>
+
+원통 : 반지름, 높이를 입력으로 받아서 체적을 출력한다.<br>
+<form action="homework3-4.php" method="post">
+  <input type="hidden" name="shape" value="cylinder">
+  반지름: <input type="text" name="radius"><br>
+  높이: <input type="text" name="height"><br>
+  <input type="submit" value="ok!">
+</form>
+<br><hr><br>
+
+구 : 반지름을 입력으로 받아서 체적을 출력한다.<br>
+<form action="homework3-4.php" method="post">
+  <input type="hidden" name="shape" value="sphere">
+  반지름: <input type="text" name="radius"><br>
+  <input type="submit" value="ok!">
+</form>
+
+</body>
+</html>
+
+PHP
+
+<?php
+$shape  = $_POST["shape"];
+$width  = $_POST["width"];
+$height = $_POST["height"];
+$length = $_POST["length"];
+$radius = $_POST["radius"];
+?>
+<html>
+<body>
+<head><meta charset="utf8"></head>
+
+<?php if ($shape == "rectangle") { ?>
+직사각형 : 가로와 세로를 입력으로 받아서 면적을 출력한다.<br>
+가로 <?php echo $width; ?><br>
+세로 <?php echo $height; ?><br>
+면적 <?php echo $width * $height; ?><br>
+
+<?php } else if ($shape == "triangle") { ?>
+삼각형 : 밑변과 높이를 입력으로 받아서 면적을 출력한다.<br>
+밑변 <?php echo $width; ?><br>
+높이 <?php echo $height; ?><br>
+면적 <?php echo ($width * $height) / 2; ?><br>
+
+<?php } else if ($shape == "circle") { ?>
+원 : 반지름을 입력으로 받아서 면적을 출력한다.<br>
+반지름 <?php echo $radius; ?><br>
+면적 <?php echo pi() * $radius * $radius; ?><br>
+
+<?php } else if ($shape == "box") { ?>
+직육면체 : 가로, 세로, 높이를 입력으로 받아서 체적을 출력한다.<br>
+가로 <?php echo $width; ?><br>
+세로 <?php echo $length; ?><br>
+높이 <?php echo $height; ?><br>
+체적 <?php echo $width * $length * $height; ?><br>
+
+<?php } else if ($shape == "cylinder") { ?>
+원통 : 반지름, 높이를 입력으로 받아서 체적을 출력한다.<br>
+반지름 <?php echo $radius; ?><br>
+높이 <?php echo $height; ?><br>
+체적 <?php echo pi() * $radius * $radius * $height; ?><br>
+
+<?php } else if ($shape == "sphere") { ?>
+구 : 반지름을 입력으로 받아서 체적을 출력한다.<br>
+반지름 <?php echo $radius; ?><br>
+체적 <?php echo (4.0/3.0) * pi() * $radius * $radius * $radius; ?><br>
+<?php } ?>
+
+<br>
+<a href="homework3-4.html">back</a>
+
+</body>
+</html>
